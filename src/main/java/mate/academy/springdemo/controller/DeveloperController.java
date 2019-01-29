@@ -1,6 +1,5 @@
 package mate.academy.springdemo.controller;
 
-import mate.academy.springdemo.config.Config;
 import mate.academy.springdemo.model.Customer;
 import mate.academy.springdemo.model.Developer;
 import mate.academy.springdemo.model.Project;
@@ -8,11 +7,6 @@ import mate.academy.springdemo.model.Skill;
 import mate.academy.springdemo.model.dto.DeveloperDto;
 import mate.academy.springdemo.service.DeveloperService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.data.web.JsonPath;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,7 +28,6 @@ public class DeveloperController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String info() {
         Developer dev2 = Developer.builder()
-                .id(4L)
                 .name("Vasya")
                 .age(30)
                 .salary(900)
@@ -42,18 +35,15 @@ public class DeveloperController {
                 .skills(new HashSet<>())
                 .build();
         Skill skill = Skill.builder()
-                .id(1L)
                 .branch("Java")
                 .level("Junior")
                 .build();
         Project project = Project.builder()
-                .id(1L)
                 .name("Astra")
                 .birthday(LocalDate.parse("2005-06-08"))
                 .cost(150000)
                 .build();
         Customer customer = Customer.builder()
-                .id(1L)
                 .name("Tolya")
                 .country("Amerika")
                 .projects(new HashSet<>())
@@ -63,14 +53,14 @@ public class DeveloperController {
         dev2.addSkill(skill);
         developerService.create(dev2);
 
-        return "developers/info";
+        return "developers/greetings";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String id(@PathVariable Long id, Model model) {
         DeveloperDto dev = developerService.findById(id);
         model.addAttribute("developer", dev);
-        return "developers/id";
+        return "developers/info";
     }
 
     @RequestMapping(value = "/newDev", method = RequestMethod.GET)
@@ -81,13 +71,13 @@ public class DeveloperController {
     @RequestMapping(value = "/addDev", method = RequestMethod.POST)
     public String putDeveloper(@ModelAttribute("developer") DeveloperDto devDto, ModelMap model) {
         Developer dev = Developer.builder()
-                .id(devDto.getId())
                 .age(devDto.getAge())
                 .name(devDto.getName())
                 .salary(devDto.getSalary())
                 .build();
-        developerService.create(dev);
+        Long id = developerService.create(dev).getId();
 
+        devDto.setId(id);
         model.addAttribute(devDto);
         return "developers/developerView";
     }

@@ -19,10 +19,6 @@
            action="/springdemo_war_exploded/developer/addDev" modelAttribute="developer">
     <table>
         <tr>
-            <td><form:label path="id">Id</form:label></td>
-            <td><form:input path="id"/></td>
-        </tr>
-        <tr>
             <td><form:label path="name">Name</form:label></td>
             <td><form:input path="name"/></td>
         </tr>
