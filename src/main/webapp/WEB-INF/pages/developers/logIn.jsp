@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Руслан
@@ -9,6 +10,7 @@
 <html>
 <head>
     <title>Log In</title>
+    <script src="<c:url value="/resources/jquery-3.3.1.js" />"></script>
 </head>
 <body>
 
@@ -27,18 +29,17 @@
     $("#logIn").submit(function(event){
         event.preventDefault();
         var form = $(this);
-        var url = 'http://localhost:8080/springdemo_war_exploded/developer/';
+        var url = 'http://localhost:8080/springdemo_war_exploded/developer/login';
         var login = form.find('input[name="login"]').val();
         var password = form.find('input[name="password"]').val();
 
         $.ajax({
-            type : 'DELETE',
+            type : 'POST',
             url : url,
             contentType: 'application/x-www-form-urlencoded',
-            data : "id="+id,
+            data : "login="+login+"&password="+password,
             success : function(data, status, xhr){
-                $("#result").html(data+
-                    " link: <a href='"+url+"'>"+url+"</a>");
+                $("#result").html(data);
             },
             error: function(xhr, status, error){
                 alert(error);

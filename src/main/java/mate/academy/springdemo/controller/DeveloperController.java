@@ -45,7 +45,7 @@ public class DeveloperController {
 
     @RequestMapping(value = "/newDev", method = RequestMethod.GET)
     public ModelAndView newDeveloper() {
-        return new ModelAndView("developers/createDeveloper", "developer", new Developer());
+        return new ModelAndView("developers/createDeveloper", "developer", new DeveloperInput());
     }
 
     @RequestMapping(value = "/addDev", method = RequestMethod.POST)
@@ -60,7 +60,7 @@ public class DeveloperController {
         DeveloperOutput devOut = DtoUtil.getDeveloperOutput(dev);
         devOut.setId(id);
 
-        model.addAttribute(devOut);
+        model.addAttribute("developer", devOut);
         return "developers/developerView";
     }
 
@@ -93,5 +93,20 @@ public class DeveloperController {
         return "Developer deleted";
     }
 
-//    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String logIn() {
+        return "developers/logIn";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String logIn(@RequestBody MultiValueMap<String, String> model) {
+        String login = "admin";
+        String password = "admin";
+        if(login.equalsIgnoreCase(model.getFirst("login"))
+            & password.equalsIgnoreCase(model.getFirst("password"))) {
+            return "Success!";
+        }
+        return "Denied!";
+    }
 }
