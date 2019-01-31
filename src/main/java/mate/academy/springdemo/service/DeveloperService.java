@@ -1,7 +1,7 @@
 package mate.academy.springdemo.service;
 
 import mate.academy.springdemo.model.Developer;
-import mate.academy.springdemo.model.dto.DeveloperDto;
+import mate.academy.springdemo.model.dto.DeveloperOutput;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +10,9 @@ import java.util.List;
 public interface DeveloperService {
     Developer create(Developer dev);
 
-    DeveloperDto findById(Long id);
+    DeveloperOutput findById(Long id);
+
+    List<DeveloperOutput> getAll();
 
     void deleteById(Long id);
 
