@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Log4j2
 @Controller
-@RequestMapping(value = "/user")
-public class UserController {
+@RequestMapping(value = "/auth")
+public class AuthorizationController {
     @Autowired
     private UserService service;
 
     @GetMapping(value = "/login")
     public String logIn() {
         log.info("Login GET works!");
-        return "users/logIn";
+        return "authorization/logIn";
     }
 
     @ResponseBody
@@ -49,7 +49,7 @@ public class UserController {
 
     @GetMapping(value = "/registration")
     public String registration() {
-        return "users/registration";
+        return "authorization/registration";
     }
 
     @ResponseBody

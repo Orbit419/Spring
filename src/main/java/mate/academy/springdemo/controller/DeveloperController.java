@@ -1,16 +1,19 @@
 package mate.academy.springdemo.controller;
 
-import com.mysql.cj.xdevapi.Collection;
+import lombok.extern.log4j.Log4j2;
 import mate.academy.springdemo.dtoUtil.DtoUtil;
 import mate.academy.springdemo.model.Developer;
 import mate.academy.springdemo.model.dto.DeveloperInput;
 import mate.academy.springdemo.model.dto.DeveloperOutput;
 import mate.academy.springdemo.service.DeveloperService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,21 +22,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
+@Log4j2
 @Controller
 @RequestMapping("/developer")
 public class DeveloperController {
     @Autowired
-    DeveloperService developerService;
+    private DeveloperService developerService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String info(ModelMap model) {
         List<DeveloperOutput> developers = developerService.getAll();
         model.addAttribute("developers", developers);
         return "index";
+    }
+
+    @RequestMapping(value = "/jQueryDev", method = RequestMethod.GET)
+    public String jQueryDev(ModelMap model) {
+        log.info("jQuery returned view!");
+        return "developers/testJson";
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/all")
+    public List<DeveloperOutput> getAll() {
+        List<DeveloperOutput> developers = developerService.getAll();
+        log.info("getAll returned list of developers!");
+        return developers;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

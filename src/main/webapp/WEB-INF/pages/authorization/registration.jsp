@@ -29,7 +29,7 @@
     $("#reg").submit(function(registration){
         registration.preventDefault();
         var form = $(this);
-        var url = "http://localhost:8080/springdemo_war_exploded/user/registration";
+        var url = "http://localhost:8080/springdemo_war_exploded/auth/registration";
         var data = {
             "login": form.find('input[name="login"]').val(),
             "password": form.find('input[name="password"]').val(),

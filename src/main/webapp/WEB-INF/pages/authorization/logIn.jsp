@@ -29,7 +29,7 @@
     $("#logIn").submit(function (event) {
         event.preventDefault();
         var form = $(this);
-        var url = "http://localhost:8080/springdemo_war_exploded/user/login";
+        var url = "http://localhost:8080/springdemo_war_exploded/auth/login";
         var data = {
             "login": form.find('input[name="login"]').val(),
             "password": form.find('input[name="password"]').val()
