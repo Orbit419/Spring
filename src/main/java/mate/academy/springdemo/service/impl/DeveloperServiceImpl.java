@@ -1,7 +1,8 @@
 package mate.academy.springdemo.service.impl;
 
+import mate.academy.springdemo.dtoUtil.DtoUtil;
 import mate.academy.springdemo.model.Developer;
-import mate.academy.springdemo.model.dto.DeveloperDto;
+import mate.academy.springdemo.model.dto.DeveloperOutput;
 import mate.academy.springdemo.repository.DeveloperRepository;
 import mate.academy.springdemo.service.DeveloperService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class DeveloperServiceImpl implements DeveloperService {
@@ -24,15 +26,22 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Transactional(readOnly = true)
-    public DeveloperDto findById(Long id) {
+    public DeveloperOutput findById(Long id) {
         Developer dev = developerRepository.getOne(id);
-        DeveloperDto devDto = DeveloperDto.builder()
+        DeveloperOutput devDto = DeveloperOutput.builder()
                 .id(dev.getId())
                 .age(dev.getAge())
                 .name(dev.getName())
                 .salary(dev.getSalary())
                 .build();
         return devDto;
+    }
+
+    @Override
+    public List<DeveloperOutput> getAll() {
+        return developerRepository.findAll().stream()
+                .map(developer -> DtoUtil.getDeveloperOutput(developer))
+                .collect(Collectors.toList());
     }
 
     @Override

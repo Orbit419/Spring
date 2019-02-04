@@ -5,7 +5,7 @@
   Time: 17:50
   To change this template use File | Settings | File Templates.
 --%>
-<jsp:useBean id="developer" scope="request" type="mate.academy.springdemo.model.dto.DeveloperDto"/>
+<jsp:useBean id="developer" scope="request" type="mate.academy.springdemo.model.dto.DeveloperOutput"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
