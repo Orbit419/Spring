@@ -23,7 +23,6 @@
     </pre>
 </form>
 <br/>
-<div id="result"></div>
 
 <script>
     $("#logIn").submit(function (event) {
@@ -43,8 +42,9 @@
            dataType: "json",
            data: JSON.stringify(data),
            success: function(response) {
-               console.log(response);
-               alert(response.response);
+               if(response.result)
+                   alert("Success!");
+               else alert("Wrong password or login!");
            },
            error: function() {
                alert("Something wrong!");

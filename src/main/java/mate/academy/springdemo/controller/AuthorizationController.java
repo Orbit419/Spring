@@ -4,7 +4,9 @@ import lombok.extern.log4j.Log4j2;
 import mate.academy.springdemo.model.User;
 import mate.academy.springdemo.model.userDto.UserLogIn;
 import mate.academy.springdemo.model.userDto.UserRegistration;
+import mate.academy.springdemo.model.util.AuthResponse;
 import mate.academy.springdemo.model.util.Response;
+import mate.academy.springdemo.service.SecurityService;
 import mate.academy.springdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class AuthorizationController {
     @Autowired
     private UserService service;
 
+    @Autowired
+    private SecurityService securityService;
+
     @GetMapping(value = "/login")
     public String logIn() {
         log.info("Login GET works!");
@@ -29,22 +34,12 @@ public class AuthorizationController {
 
     @ResponseBody
     @PostMapping(value = "/login")
-    public Response logIn(@RequestBody UserLogIn userInput) {
-        Response resp = new Response();
-        log.info("Entered into login POST!");
-        if (service.existsByLogin(userInput.getLogin())) {
-            User user = service.findByLogin(userInput.getLogin());
-            log.info("Find a user!");
-            if (
-                    user.getLogin().equalsIgnoreCase(userInput.getLogin())
-                            & user.getPassword().equals(userInput.getPassword())
-            ) {
-                resp.setResponse("Success!");
-                return resp;
-            }
-        }
-        resp.setResponse("Denied!");
-        return resp;
+    public AuthResponse doLogin(@RequestBody UserLogIn userLogIn) {
+        log.info("Entered into POST doLogin()");
+        boolean result = securityService.doLogin(userLogIn);
+        log.info("POST doLogin() works!");
+
+        return new AuthResponse(result);
     }
 
     @GetMapping(value = "/registration")
