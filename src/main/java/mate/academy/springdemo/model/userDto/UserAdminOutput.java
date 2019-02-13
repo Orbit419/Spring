@@ -1,4 +1,4 @@
-package mate.academy.springdemo.model.dto;
+package mate.academy.springdemo.model.userDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class DeveloperOutput {
+@NoArgsConstructor
+public class UserAdminOutput {
     private Long id;
-    private String name;
-    private int age;
-    private int salary;
+    private String userName;
+    private String role;
 }

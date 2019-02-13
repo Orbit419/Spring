@@ -3,11 +3,9 @@ package mate.academy.springdemo.controller;
 import lombok.extern.log4j.Log4j2;
 import mate.academy.springdemo.dtoUtil.DtoUtil;
 import mate.academy.springdemo.model.Developer;
-import mate.academy.springdemo.model.dto.DeveloperInput;
-import mate.academy.springdemo.model.dto.DeveloperOutput;
+import mate.academy.springdemo.model.developerDto.DeveloperInput;
+import mate.academy.springdemo.model.developerDto.DeveloperOutput;
 import mate.academy.springdemo.service.DeveloperService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +29,7 @@ public class DeveloperController {
     @Autowired
     private DeveloperService developerService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String info(ModelMap model) {
         List<DeveloperOutput> developers = developerService.getAll();
         model.addAttribute("developers", developers);
@@ -107,22 +105,5 @@ public class DeveloperController {
     public String delete(@PathVariable Long id) {
         developerService.deleteById(id);
         return "Developer deleted";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String logIn() {
-        return "developers/logIn";
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String logIn(@RequestBody MultiValueMap<String, String> model) {
-        String login = "admin";
-        String password = "admin";
-        if(login.equalsIgnoreCase(model.getFirst("login"))
-            & password.equalsIgnoreCase(model.getFirst("password"))) {
-            return "Success!";
-        }
-        return "Denied!";
     }
 }

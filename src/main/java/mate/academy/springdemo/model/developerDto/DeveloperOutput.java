@@ -1,4 +1,4 @@
-package mate.academy.springdemo.model.dto;
+package mate.academy.springdemo.model.developerDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeveloperInput {
+public class DeveloperOutput {
+    private Long id;
     private String name;
     private int age;
     private int salary;
 }
-

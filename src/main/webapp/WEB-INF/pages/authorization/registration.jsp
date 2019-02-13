@@ -18,7 +18,7 @@
 
 <form id="reg">
     <pre>
-        Login:    <input type="text" name="login">
+        Username:    <input type="text" name="userName">
         Password: <input type="text" name="password">
         Mail:     <input type="text" name="mail">
                   <input type="submit" value="Submit">
@@ -29,9 +29,9 @@
     $("#reg").submit(function(registration){
         registration.preventDefault();
         var form = $(this);
-        var url = "http://localhost:8080/springdemo_war_exploded/auth/registration";
+        var url = "http://localhost:8080/springdemo_war_exploded/registration";
         var data = {
-            "login": form.find('input[name="login"]').val(),
+            "userName": form.find('input[name="userName"]').val(),
             "password": form.find('input[name="password"]').val(),
             "mail": form.find('input[name="mail"]').val()
         };
@@ -47,7 +47,7 @@
                alert(resp.response);
            },
             error: function() {
-               alert("Something wrong!");
+               alert("Alert!!! It doesn't works!");
            }
         });
     });

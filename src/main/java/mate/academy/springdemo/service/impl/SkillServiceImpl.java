@@ -4,7 +4,9 @@ import mate.academy.springdemo.model.Skill;
 import mate.academy.springdemo.repository.SkillRepository;
 import mate.academy.springdemo.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SkillServiceImpl implements SkillService {
     private final SkillRepository skillRepository;
 

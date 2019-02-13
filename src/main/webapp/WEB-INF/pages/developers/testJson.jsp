@@ -11,8 +11,7 @@
 <head>
     <title>Json</title>
 </head>
-
-<div id="addDev" class="newDev"></div>
+<body>
 <div id ="mylist" class="list"></div>
 
 <script src="<c:url value="/resources/jquery-3.3.1.js" />"></script>
