@@ -41,10 +41,10 @@ public class SecurityServiceImpl implements SecurityService {
             authenticate =
                     authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         } catch (BadCredentialsException e) {
-            log.info("Authorization failed: BadCredentialsException!");
+            log.error(e);
             return false;
         } catch (UsernameNotFoundException e) {
-            log.info("UsernameNotFoundException in SecurityServiceImpl!");
+            log.error(e);
             return false;
         }
         return true;
