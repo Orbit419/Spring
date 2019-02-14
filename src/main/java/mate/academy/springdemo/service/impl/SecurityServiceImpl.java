@@ -40,7 +40,11 @@ public class SecurityServiceImpl implements SecurityService {
                     , userDetails.getAuthorities());
             authenticate =
                     authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-        } catch (BadCredentialsException | UsernameNotFoundException e) {
+        } catch (BadCredentialsException e) {
+            log.info("Authorization failed: BadCredentialsException!");
+            return false;
+        } catch (UsernameNotFoundException e) {
+            log.info("UsernameNotFoundException in SecurityServiceImpl!");
             return false;
         }
         return true;
@@ -54,10 +58,13 @@ public class SecurityServiceImpl implements SecurityService {
                 .mail(userRegistration.getMail())
                 .build();
 
-        if(!userService.existsByUserName(user.getUserName())) {
+        if(userService.existsByUserName(user.getUserName())) {
+            log.info("User with the same username already exist!");
+            return false;
+        } else {
             userService.create(user);
             return true;
-        } else return false;
+        }
     }
 
     @Override

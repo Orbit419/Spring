@@ -27,7 +27,7 @@ public class User {
     private String password;
     private String mail;
 
-    // default role is User
+    // default role is Guest
     @Builder.Default
     private String role = "GUEST";
 }
