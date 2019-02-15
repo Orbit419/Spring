@@ -15,7 +15,6 @@
 
 <div id ="mylist" class="list"></div>
 
-<%--<script src="<c:url value="/resources/jquery-3.3.1.js" />"></script>--%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 <script>

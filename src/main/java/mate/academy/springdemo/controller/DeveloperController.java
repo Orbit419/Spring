@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Objects;
 
 @Log4j2
 @Controller
@@ -36,10 +37,10 @@ public class DeveloperController {
         return "index";
     }
 
-    @RequestMapping(value = "/jQueryDev", method = RequestMethod.GET)
-    public String jQueryDev(ModelMap model) {
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    public String jQueryDev() {
         log.info("jQuery returned view!");
-        return "developers/testJson";
+        return "developers/getAll";
     }
 
     @ResponseBody
@@ -59,7 +60,8 @@ public class DeveloperController {
 
     @RequestMapping(value = "/newDev", method = RequestMethod.GET)
     public ModelAndView newDeveloper() {
-        return new ModelAndView("developers/createDeveloper", "developer", new DeveloperInput());
+        return new ModelAndView("developers/createDeveloper", "developer"
+                , new DeveloperInput());
     }
 
     @RequestMapping(value = "/addDev", method = RequestMethod.POST)
@@ -88,8 +90,8 @@ public class DeveloperController {
     public String put(@RequestBody MultiValueMap<String, String> formParams) {
         Developer dev = Developer.builder()
                 .name(formParams.getFirst("name"))
-                .age(Integer.parseInt(formParams.getFirst("age")))
-                .salary(Integer.parseInt(formParams.getFirst("salary")))
+                .age(Integer.parseInt(Objects.requireNonNull(formParams.getFirst("age"))))
+                .salary(Integer.parseInt(Objects.requireNonNull(formParams.getFirst("salary"))))
                 .build();
         developerService.create(dev);
         return "Developer created!";

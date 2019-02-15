@@ -14,4 +14,3 @@ public class DeveloperInput {
     private int age;
     private int salary;
 }
-

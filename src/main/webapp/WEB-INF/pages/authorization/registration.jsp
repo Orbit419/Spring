@@ -45,6 +45,7 @@
            dataType: "json",
            success: function(resp) {
                alert(resp.response);
+               window.location.href = "http://localhost:8080/springdemo_war_exploded/login";
            },
             error: function() {
                alert("Alert!!! It doesn't works!");
