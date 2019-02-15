@@ -2,7 +2,7 @@ package mate.academy.springdemo.service.impl;
 
 import mate.academy.springdemo.dtoUtil.DtoUtil;
 import mate.academy.springdemo.model.Developer;
-import mate.academy.springdemo.model.dto.DeveloperOutput;
+import mate.academy.springdemo.model.developerDto.DeveloperOutput;
 import mate.academy.springdemo.repository.DeveloperRepository;
 import mate.academy.springdemo.service.DeveloperService;
 import org.springframework.beans.factory.annotation.Autowired;

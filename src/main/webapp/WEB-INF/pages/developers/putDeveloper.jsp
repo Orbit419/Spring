@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%--<script src="../../../resources/jquery-3.3.1.js"></script>--%>
     <script src="<c:url value="/resources/jquery-3.3.1.js" />"></script>
 </head>
 <body>

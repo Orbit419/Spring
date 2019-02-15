@@ -4,7 +4,9 @@ import mate.academy.springdemo.model.Customer;
 import mate.academy.springdemo.repository.CustomerRepository;
 import mate.academy.springdemo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
 

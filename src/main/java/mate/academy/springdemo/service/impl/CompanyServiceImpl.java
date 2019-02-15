@@ -4,7 +4,9 @@ import mate.academy.springdemo.model.Company;
 import mate.academy.springdemo.repository.CompanyRepository;
 import mate.academy.springdemo.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CompanyServiceImpl implements CompanyService {
     private final CompanyRepository companyRepository;
 

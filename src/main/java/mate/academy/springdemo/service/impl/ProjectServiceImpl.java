@@ -4,7 +4,11 @@ import mate.academy.springdemo.model.Project;
 import mate.academy.springdemo.repository.ProjectRepository;
 import mate.academy.springdemo.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+@Component
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
 
@@ -21,6 +25,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project findById(Long id) {
         return projectRepository.getOne(id);
+    }
+
+    @Override
+    public List<Project> findAll() {
+        return projectRepository.findAll();
     }
 
     @Override

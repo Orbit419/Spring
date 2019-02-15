@@ -1,7 +1,7 @@
 package mate.academy.springdemo.service;
 
 import mate.academy.springdemo.model.Developer;
-import mate.academy.springdemo.model.dto.DeveloperOutput;
+import mate.academy.springdemo.model.developerDto.DeveloperOutput;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
