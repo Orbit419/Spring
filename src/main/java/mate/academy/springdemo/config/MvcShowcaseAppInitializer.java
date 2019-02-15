@@ -6,12 +6,11 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 public class MvcShowcaseAppInitializer implements WebApplicationInitializer {
 
-    public void onStartup(javax.servlet.ServletContext servletContext) throws ServletException {
+    public void onStartup(javax.servlet.ServletContext servletContext) {
         AnnotationConfigWebApplicationContext root =
                 new AnnotationConfigWebApplicationContext();
 

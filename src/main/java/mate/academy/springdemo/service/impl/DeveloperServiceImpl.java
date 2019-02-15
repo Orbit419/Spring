@@ -40,7 +40,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     @Override
     public List<DeveloperOutput> getAll() {
         return developerRepository.findAll().stream()
-                .map(developer -> DtoUtil.getDeveloperOutput(developer))
+                .map(DtoUtil::getDeveloperOutput)
                 .collect(Collectors.toList());
     }
 

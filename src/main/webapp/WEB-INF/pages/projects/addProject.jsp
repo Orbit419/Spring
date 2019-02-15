@@ -41,6 +41,7 @@
             data : JSON.stringify(data),
             success : function(resp){
                 alert(resp.response);
+                window.location.href = "http://localhost:8080/springdemo_war_exploded/project";
             },
             error: function(){
                 alert("Something wrong!");

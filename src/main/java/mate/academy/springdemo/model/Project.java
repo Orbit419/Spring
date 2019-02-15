@@ -29,6 +29,7 @@ public class Project {
     private LocalDate birthday;
     private String name;
     private int cost;
+    @Builder.Default
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Developer> developers = new HashSet<>();
 

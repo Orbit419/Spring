@@ -28,6 +28,7 @@ public class Company {
     private Long id;
     private String name;
     private String country;
+    @Builder.Default
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Project> projects = new HashSet<>();
 
