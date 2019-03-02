@@ -14,6 +14,6 @@ Stack:
   - Maven
   - MySql 8.0.13
   
-  In this project I have some entities associated with each other. All entities have restful API based on Spring Data JPA.
+  This project have some entities associated with each other. All entities have restful API based on Spring Data JPA.
   Entity "developer" have restful API with own page.
-  Also I have Spring Security based authorization and authentication.
+  Also it has Spring Security based authorization and authentication.
